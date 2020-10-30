@@ -15,7 +15,7 @@ Wu et al. [2] proposed a novel CD method based on slow feature analysis (SFA), w
 MAD is a change detection algorithm based on canonical correlation analysis (CCA) that aims to maximize the variance of projection feature difference. For the detailed introduction about MAD, please refer to [5] and [6]. This reporisty contains the python implementation of MAD. The MATLAB implementation can be founded in http://www.imm.dtu.dk/~alan/software.html. 
 
 ### PCA-Kmeans
-<div align=center><img src="./Figure/PCA_Kmeans.png" width="60%" height="60%"></div>
+<div align=center><img src="./Figure/PCA_Kmeans.png" width="50%" height="50%"></div>
 PCA-Kmeans [12] partitones the difference image into nonoverlapping blocks. Orthonormal eigenvectors are extracted through PCA of nonoverlapping block set to create an eigenvector space. Each pixel in the difference image is represented with an S-dimensional feature vector which is the projection difference image data onto the generated eigenvector space. The change detection is achieved by partitioning the feature vector space into two clusters using k-means. 
 
 ## Deep Learning Methods
