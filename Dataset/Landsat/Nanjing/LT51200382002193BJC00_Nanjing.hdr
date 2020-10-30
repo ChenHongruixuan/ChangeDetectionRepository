@@ -1,0 +1,27 @@
+ENVI
+description = {
+  File Resize Result, x resize factor: 1.000000, y resize factor: 1.000000.
+  [Mon Jan 11 15:50:24 2016]}
+samples = 800
+lines   = 800
+bands   = 6
+header offset = 0
+file type = ENVI Standard
+data type = 1
+interleave = bsq
+sensor type = Landsat TM
+byte order = 0
+x start = 3681
+y start = 2275
+map info = {UTM, 1.000, 1.000, 660585.000, 3551295.000, 3.0000000000e+001, 3.0000000000e+001, 50, North, WGS-84, units=Meters}
+coordinate system string = {PROJCS["UTM_Zone_50N",GEOGCS["GCS_WGS_1984",DATUM["D_WGS_1984",SPHEROID["WGS_1984",6378137.0,298.257223563]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]],PROJECTION["Transverse_Mercator"],PARAMETER["False_Easting",500000.0],PARAMETER["False_Northing",0.0],PARAMETER["Central_Meridian",117.0],PARAMETER["Scale_Factor",0.9996],PARAMETER["Latitude_Of_Origin",0.0],UNIT["Meter",1.0]]}
+wavelength units = Micrometers
+band names = {
+ Resize (TM Meta (Band 1):LT51200382002193BJC00_MTL.txt), 
+ Resize (TM Meta (Band 2):LT51200382002193BJC00_MTL.txt), 
+ Resize (TM Meta (Band 3):LT51200382002193BJC00_MTL.txt), 
+ Resize (TM Meta (Band 4):LT51200382002193BJC00_MTL.txt), 
+ Resize (TM Meta (Band 5):LT51200382002193BJC00_MTL.txt), 
+ Resize (TM Meta (Band 7):LT51200382002193BJC00_MTL.txt)}
+wavelength = {
+ 0.485000, 0.569000, 0.660000, 0.840000, 1.676000, 2.223000}
