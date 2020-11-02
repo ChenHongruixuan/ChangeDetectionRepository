@@ -1,5 +1,5 @@
 # Change Detection Repository
-In this repository, we provide python implementation of some traditional change detection methods, such as SFA, MAD, some deep learning-based change detection methods, such as SiamCRNN, DSFA, and FCN-based methods, or their original websites. We would be very glad that if this repository can provide some help to your research in change detection or remote sensing image interpretation.
+In this repository, we provide python implementation of some traditional change detection methods, such as SFA, MAD, some deep learning-based change detection methods, such as SiamCRNN, DSFA, and FCN-based methods, or their original websites. Some multi-temporal data sets are also contained in this repository. We would be very glad if this repository can provide some help to your research in change detection or remote sensing image interpretation.
 
 
 ## Traditional Methods
