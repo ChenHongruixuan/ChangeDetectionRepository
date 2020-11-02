@@ -32,7 +32,11 @@ KPCA-MNet is designed for unsupervised binary and multi-class change detection i
 
 ### SARPCANet
 <div align=center><img src="./Figure/SAR_PCANet_1.png" width="60%" height="60%"></div>
-SARPCANet  utilizes Gabor wavelets and FCM as the pre-classification method to select training samples [10], and then trains a PCANet [11] model with the selected image patches. The original MATLAB implementation could be founded in https://github.com/summitgao/SAR_Change_Detection_GarborPCANet. 
+SARPCANet utilizes Gabor wavelets and FCM as the pre-classification method to select training samples [10], and then trains a PCANet [11] model with the selected image patches. The original MATLAB implementation could be founded in https://github.com/summitgao/SAR_Change_Detection_GarborPCANet. 
+
+### FDCNN
+<div align=center><img src="./Figure/FDCNN.png" width="60%" height="60%"></div>
+FDCNN [13] uses scene-level samples of remote sensing scene classification for learning deep features from different remote sensing scenes at different scales. Then, a new CNN structure and training strategies are proposed for remote sensing image change detection, which is supervised but requires very few pixel-level training samples.The original Caffe implementation could be founded in https://github.com/MinZHANG-WHU/FDCNN. 
 
 
 
@@ -49,5 +53,6 @@ SARPCANet  utilizes Gabor wavelets and FCM as the pre-classification method to s
 [10] F. Gao, J. Dong, B. Li, and Q. Xu, “Automatic Change Detection in Synthetic Aperture Radar Images Based on PCANet,” IEEE Geosci. Remote Sens. Lett., vol. 13, no. 12, pp. 1792–1796, 2016.  
 [11] T. H. Chan, K. Jia, S. Gao, J. Lu, Z. Zeng, and Y. Ma, “PCANet: A Simple Deep Learning Baseline for Image Classification?,” IEEE Trans. Image Process., vol. 24, no. 12, pp. 5017–5032, 2015.  
 [12] T. Celik, “Unsupervised change detection in satellite images using principal component analysis and K-means clustering,” IEEE Geosci. Remote Sens. Lett., vol. 6, no. 4, pp. 772–776, 2009.  
+[13] M. Zhang and W. Shi, “A Feature Difference Convolutional Neural Network-Based Change Detection Method,” IEEE Trans. Geosci. Remote Sens., vol. 58, no. 10, pp. 7232–7246, 2020.
 ## Q & A
 **For any questions, please [contact us.](mailto:Qschrx@gmail.com)**
