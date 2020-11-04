@@ -11,7 +11,7 @@ import cv2 as cv
 from MAD.covw import covw
 import scipy.io as sio
 import time
-
+from sklearn.cluster import KMeans
 
 def IRMAD(img_X, img_Y, max_iter=50, epsilon=1e-3):
     bands_count_X, num = img_X.shape
