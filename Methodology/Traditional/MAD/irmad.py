@@ -8,8 +8,6 @@ from numpy.linalg import inv, eig
 from scipy.stats import chi2
 import cv2 as cv
 
-from SFA.sfa import get_binary_change_map
-from MAD.util import show_variates
 from MAD.covw import covw
 import scipy.io as sio
 import time
@@ -75,7 +73,30 @@ def IRMAD(img_X, img_Y, max_iter=50, epsilon=1e-3):
 
     return mad_variates, can_corr, mad_var, eigenvector_X, eigenvector_Y, \
            sigma_11, sigma_22, sigma_12, chi_square_dis, weight
+		   
+def get_binary_change_map(data):
+    """
+    get binary change map
+    :param data:
+    :param method: cluster method
+    :return: binary change map
+    """
+   
+    cluster_center = KMeans(n_clusters=2, max_iter=1500).fit(data.T).cluster_centers_.T  # shape: (1, 2)
+    # cluster_center = k_means_cluster(weight, cluster_num=2)
+    print('k-means cluster is done, the cluster center is ', cluster_center)
+    dis_1 = np.linalg.norm(data - cluster_center[0, 0], axis=0, keepdims=True)
+    dis_2 = np.linalg.norm(data - cluster_center[0, 1], axis=0, keepdims=True)
 
+    bcm = np.copy(data)  # binary change map
+    if cluster_center[0, 0] > cluster_center[0, 1]:
+        bcm[dis_1 > dis_2] = 0
+        bcm[dis_1 <= dis_2] = 255
+    else:
+        bcm[dis_1 > dis_2] = 255
+        bcm[dis_1 <= dis_2] = 0
+
+    return bcm
 
 if __name__ == '__main__':
     # data_set_X = gdal.Open('D:/Workspace/Python/RSExperiment/Adata/Lidar_Opt/2008_lidar')  # data set X
@@ -109,25 +130,9 @@ if __name__ == '__main__':
                                                                                               epsilon=1e-3)
     sqrt_chi2 = np.sqrt(chi2)
 
-    k_means_bcm = get_binary_change_map(sqrt_chi2, method='k_means')
+    k_means_bcm = get_binary_change_map(sqrt_chi2)
     k_means_bcm = np.reshape(k_means_bcm, (img_height, img_width))
     cv.imwrite('IRMAD.png', k_means_bcm)
     toc = time.time()
     print(toc - tic)
-    # noc_weight = np.reshape(noc_weight, (img_height, img_width))
-    # changed_map = np.copy(noc_weight)
-    # changed_map[noc_weight < 0.00001] = 255
-    # changed_map[noc_weight >= 0.00001] = 0
-    #
-    # img_name = 'changed map'
-    # cv.namedWindow(img_name, cv.WINDOW_NORMAL)
-    # cv.imshow(img_name, changed_map)
-    # k = cv.waitKey(0) & 0xFF
-    # if k == 27:  # wait for ESC key to exit
-    #     cv.destroyAllWindows()
-    # # load_path = 'irmad_variate.mat'
-    # # load_data = sio.loadmat(load_path)
-    # # mad = load_data['irmads']
-    # # mad = np.transpose(mad, (2, 1, 0))
-    #
-    # show_variates(mad, show_split=True)  # show mad variates
+
