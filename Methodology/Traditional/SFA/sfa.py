@@ -251,3 +251,33 @@ class SFA(object):
         elif method == 'OR':
             normTarImg = c1 * target_img + c2
         return normTarImg, method
+
+def main():
+    data_set_X = gdal.Open('../../../Dataset/Landsat/Taizhou/2000TM')  # data set X
+    data_set_Y = gdal.Open('../../../Dataset/Landsat/Taizhou/2003TM')  # data set Y
+
+    img_width = data_set_X.RasterXSize  # image width
+    img_height = data_set_X.RasterYSize  # image height
+
+    img_X = data_set_X.ReadAsArray(0, 0, img_width, img_height)
+    img_Y = data_set_Y.ReadAsArray(0, 0, img_width, img_height)
+    # img_X = cv.imread('D:/Workspace/Python/RSExperiment/Adata/Google/image_1.bmp')  # data set X
+    # img_Y = cv.imread('D:/Workspace/Python/RSExperiment/Adata/Google/image_2.bmp')  # data set Y
+    #
+    # img_X = np.transpose(img_X, axes=[2, 0, 1])
+    # img_Y = np.transpose(img_Y, axes=[2, 0, 1])
+    channel, img_height, img_width = img_X.shape
+    tic = time.time()
+    sfa = SFA(img_X, img_Y)
+    bn_SFA_variable, bn_lamb, bn_all_lambda, bn_trans_mat, bn_iwd, bn_isfa_w = sfa.isfa(max_iter=50, epsilon=1e-3,
+                                                                                        norm_trans=True)
+    sqrt_chi2 = np.sqrt(bn_iwd)
+
+    k_means_bcm = get_binary_change_map(sqrt_chi2)
+    k_means_bcm = np.reshape(k_means_bcm, (img_height, img_width))
+    cv.imwrite('ISFA.bmp', k_means_bcm)
+    toc = time.time()
+    print(toc-tic)
+
+if __name__ == '__main__':
+    main()
