@@ -61,6 +61,6 @@ DCVA [16] processes pre-change and post-change images through a pre-trained netw
 [13] M. Zhang and W. Shi, “A Feature Difference Convolutional Neural Network-Based Change Detection Method,” IEEE Trans. Geosci. Remote Sens., vol. 58, no. 10, pp. 7232–7246, 2020.
 [14] H. Chen, C. Wu, B. Du and L. Zhang, "Deep Siamese Multi-scale Convolutional Network for Change Detection in Multi-temporal VHR Images," 2019 10th International Workshop on the Analysis of Multitemporal Remote Sensing Images (MultiTemp), Shanghai, China, 2019, pp. 1-4.  
 [15] H. Chen, C. Wu, B. Du and L. Zhang, "Change Detection in Multi-temporal VHR Images Based on Deep Siamese Multi-scale Convolutional Neural Network," arXiv preprint arXiv:1912.08628, 2020. https://arxiv.org/abs/1906.11479.  
-[16] [1] S. Saha, F. Bovolo, and L. Bruzzone, “Unsupervised deep change vector analysis for multiple-change detection in VHR Images,” IEEE Trans. Geosci. Remote Sens., vol. 57, no. 6, pp. 3677–3693, 2019. 
+[16] S. Saha, F. Bovolo, and L. Bruzzone, “Unsupervised deep change vector analysis for multiple-change detection in VHR Images,” IEEE Trans. Geosci. Remote Sens., vol. 57, no. 6, pp. 3677–3693, 2019. 
 ## Q & A
 **For any questions, please [contact us.](mailto:Qschrx@gmail.com)**
