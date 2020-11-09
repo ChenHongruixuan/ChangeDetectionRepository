@@ -3,44 +3,18 @@ Slow feature analysis
 C. Wu, B. Du, and L. Zhang, “Slow feature analysis for change detection in multispectral imagery,” IEEE Trans. Geosci. Remote Sens., vol. 52, no. 5, pp. 2858–2874, 2014.
 """
 
-import matplotlib.pyplot as plt
 import numpy as np
 from scipy.linalg import eig
 from scipy.stats import chi2
 from sklearn.cluster import KMeans
 
-from compare_method.otsu import otsu
+from Methodology.util.cluster_util import otsu
+import gdal
+import time
+import imageio
 
 
-def get_binary_change_map(data, method='k_means'):
-    """
-    get binary change map
-    :param data:
-    :param method: cluster method
-    :return: binary change map
-    """
-    if method == 'k_means':
-        cluster_center = KMeans(n_clusters=2, max_iter=1500).fit(data.T).cluster_centers_.T  # shape: (1, 2)
-        # cluster_center = k_means_cluster(weight, cluster_num=2)
-        print('k-means cluster is done, the cluster center is ', cluster_center)
-        dis_1 = np.linalg.norm(data - cluster_center[0, 0], axis=0, keepdims=True)
-        dis_2 = np.linalg.norm(data - cluster_center[0, 1], axis=0, keepdims=True)
-
-        bcm = np.copy(data)  # binary change map
-        if cluster_center[0, 0] > cluster_center[0, 1]:
-            bcm[dis_1 > dis_2] = 0
-            bcm[dis_1 <= dis_2] = 255
-        else:
-            bcm[dis_1 > dis_2] = 255
-            bcm[dis_1 <= dis_2] = 0
-    elif method == 'otsu':
-        bcm, threshold = otsu(data, num=200)
-        print('otsu is done, the threshold is ', threshold)
-
-    return bcm
-
-
-class SFA(object):
+class ISFA(object):
     def __init__(self, img_X, img_Y, data_format='CHW'):
         """
         the init function
@@ -162,95 +136,6 @@ class SFA(object):
 
         return ISFA_variable, lamb, all_lambda, trans_mat, T, weight
 
-    def draw_lambda(self, lambda_list, sqrt=True):
-        """
-        draw all lambda tendency
-        :param lambda_list: list contains all lambda
-        :param sqrt: if draw sqrt(lambda)
-        :return:
-        """
-        plt.title('sqrt(lambda) over the iteration')
-        plt.ylabel('sqrt(lambda)')
-        plt.xlabel('iteration')
-        i = 0
-        for lamb in lambda_list:
-            i += 1
-            if sqrt:
-                plt.plot(np.sqrt(lamb), '-*', label='band' + str(i))
-            else:
-                plt.plot(lamb, '-*', label='band' + str(i))
-        plt.legend(loc='lower right')
-        plt.show()
-
-    def stretch_band(self, bands):
-        """
-        stretch bands' value
-        :param bands: band data
-        :return:
-            stretched bands
-        """
-        stretched_band = []
-        band_count = bands.shape[0]
-        for band in range(band_count):
-            min_value = bands[band].min()
-            max_value = bands[band].max()
-            diff = max_value - min_value
-            multi = 255.0 / diff
-            new_band = np.array(multi * (bands[band] - min_value), dtype=np.uint8)
-            stretched_band.append(new_band)
-        return np.array(stretched_band)
-
-    def draw_distribution(self, variable, bins=100, alpha=0.75):
-        """
-        draw variable's histogram and show its distribution
-        :param variable: drawn variable
-        :param bins: step
-        :param alpha: transparency
-        :return:
-        """
-        plt.title('variable distribution')
-        plt.ylabel('count')
-        plt.xlabel('value')
-        f_var = variable.flatten()
-        n, bins, patches = plt.hist(f_var, bins=bins, density=0, facecolor='blue', alpha=alpha)
-        plt.show()
-
-    def radio_norm(self, target_img, ref_img, weight, method='LSR'):
-        if not (method.upper() in self.norm_method):
-            print('No method!!!!!')
-            return
-        bands_count, img_height, img_width = target_img.shape
-        P = img_height * img_width
-
-        target_img = np.reshape(target_img, (-1, P))
-        ref_img = np.reshape(ref_img, (-1, P))
-
-        sum_w = weight.sum()
-        mean_X = np.sum(weight * target_img, axis=1, keepdims=True) / sum_w
-        mean_Y = np.sum(weight * ref_img, axis=1, keepdims=True) / sum_w
-        var_X = np.sum(weight * np.square((target_img - mean_X)), axis=1, keepdims=True) / ((P - 1) * sum_w / P)
-        var_Y = np.sum(weight * np.square((ref_img - mean_Y)), axis=1, keepdims=True) / ((P - 1) * sum_w / P)
-        cov_XY = np.sum(weight * (target_img - mean_X) * (ref_img - mean_Y), axis=1, keepdims=True) / (
-                (P - 1) * sum_w / P)
-
-        # three method
-        # LSR, NR, OR
-        a1 = cov_XY / var_X
-        a2 = mean_Y - a1 * mean_X
-
-        b1 = np.sqrt(var_Y / var_X)
-        b2 = mean_Y - b1 * mean_X
-
-        c1 = ((var_Y - var_X) + np.sqrt(np.square(var_Y - var_X) + 4 * np.square(cov_XY))) / (2 * cov_XY)
-        c2 = mean_Y - c1 * mean_X
-
-        if method == 'LSR':
-            normTarImg = a1 * target_img + a2
-        elif method == 'NR':
-            normTarImg = b1 * target_img + b2
-        elif method == 'OR':
-            normTarImg = c1 * target_img + c2
-        return normTarImg, method
 
 def main():
     data_set_X = gdal.Open('../../../Dataset/Landsat/Taizhou/2000TM')  # data set X
@@ -261,23 +146,22 @@ def main():
 
     img_X = data_set_X.ReadAsArray(0, 0, img_width, img_height)
     img_Y = data_set_Y.ReadAsArray(0, 0, img_width, img_height)
-    # img_X = cv.imread('D:/Workspace/Python/RSExperiment/Adata/Google/image_1.bmp')  # data set X
-    # img_Y = cv.imread('D:/Workspace/Python/RSExperiment/Adata/Google/image_2.bmp')  # data set Y
-    #
-    # img_X = np.transpose(img_X, axes=[2, 0, 1])
-    # img_Y = np.transpose(img_Y, axes=[2, 0, 1])
+
     channel, img_height, img_width = img_X.shape
     tic = time.time()
-    sfa = SFA(img_X, img_Y)
+    sfa = ISFA(img_X, img_Y)
+    # when max_iter is set to 1, ISFA becomes SFA
     bn_SFA_variable, bn_lamb, bn_all_lambda, bn_trans_mat, bn_iwd, bn_isfa_w = sfa.isfa(max_iter=50, epsilon=1e-3,
                                                                                         norm_trans=True)
     sqrt_chi2 = np.sqrt(bn_iwd)
-
-    k_means_bcm = get_binary_change_map(sqrt_chi2)
-    k_means_bcm = np.reshape(k_means_bcm, (img_height, img_width))
-    cv.imwrite('ISFA.bmp', k_means_bcm)
+    bcm = np.ones((1, img_height * img_width))
+    thre = otsu(sqrt_chi2)
+    bcm[sqrt_chi2 > thre] = 255
+    bcm = np.reshape(bcm, (img_height, img_width))
+    imageio.imwrite('ISFA_Taizhou.png', bcm)
     toc = time.time()
-    print(toc-tic)
+    print(toc - tic)
+
 
 if __name__ == '__main__':
     main()
