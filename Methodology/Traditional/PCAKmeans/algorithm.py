@@ -81,7 +81,7 @@ def gene_change_map(image_diff, feature_vectors, cluster_center):
     return image_diff
 
 
-def pca_k_means(img_diff, block_size=4, eig_space_dim=3, image_name=None):
+def pca_k_means(img_diff, block_size=4, eig_space_dim=3):
     # generate block vector.
     block_vectors = gene_block(img_diff, block_sz=block_size,
                                gene_block_vec=True).T  # number of vectors, shape: (H * H, (height * width) / (H * H))
@@ -107,5 +107,4 @@ def pca_k_means(img_diff, block_size=4, eig_space_dim=3, image_name=None):
 
     # generate change map
     change_map = gene_change_map(img_diff, feature_vec, cluster_center)
-    print(image_name + " change map has been generated")
     return change_map

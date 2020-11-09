@@ -1,12 +1,13 @@
 import numpy as np
-import cv2 as cv
 
 
-def diff_image(image_before, image_after, is_abs=True):
-    if is_abs:
-        img_diff = np.abs(np.array(image_before, dtype=np.float32) - np.array(image_after, dtype=np.float32))
+def diff_image(image_before, image_after, is_abs=True, is_multi_channel=False):
+    img_diff = np.array(image_before, dtype=np.float32) - np.array(image_after, dtype=np.float32)
+    if is_multi_channel:
+        img_diff = np.sqrt(np.sum(np.square(img_diff), axis=-1))
     else:
-        img_diff = np.array(image_before, dtype=np.float32) - np.array(image_after, dtype=np.float32)
+        if is_abs:
+            img_diff = np.abs(img_diff)
     return np.array(img_diff, dtype=np.uint8)
 
 
@@ -22,4 +23,3 @@ def zero_pad(img, pad):
     img_pad = np.pad(img, ((pad[0, 0], pad[0, 1]), (pad[1, 0], pad[1, 1])), 'constant')
 
     return img_pad
-
