@@ -44,6 +44,9 @@ FDCNN [13] uses scene-level samples of remote sensing scene classification for l
 ### DCVA
 DCVA [16] processes pre-change and post-change images through a pre-trained network and extracts bi-temporal deep features for subsequent processing in CD framework. The original Caffe implementation could be founded in https://github.com/sudipansaha/dcvaVHROptical. 
 
+### CorrFusionNet
+<div align=center><img src="./Figure/CorrFusionNet.jpg" width="60%" height="60%"></div>
+CorrFusionNet [17] is a unified network called CorrFusionNet for scene change detection. The CorrFusionNet firstly extracts the features of the bi-temporal inputs with deep convolutional networks. Then the extracted features will be projected into a lower dimension space to computed the instance level canonical correlation. The cross-temporal fusion will be performed based on the computed correlation in the CorrFusion module. In the objective function, the authors introduced a new formulation for calculating the temporal correlation.The Tensorflow implementation could be founded in https://github.com/rulixiang/CorrFusionNet. 
 
 ## Reference
 [1] F. Bovolo and L. Bruzzone, “A Theoretical Framework for Unsupervised Change Detection Based on Change Vector Analysis in the Polar Domain,” IEEE Trans. Geosci. Remote Sens., vol. 45, no. 1, pp. 218–236, 2007.  
@@ -62,5 +65,6 @@ DCVA [16] processes pre-change and post-change images through a pre-trained netw
 [14] H. Chen, C. Wu, B. Du and L. Zhang, "Deep Siamese Multi-scale Convolutional Network for Change Detection in Multi-temporal VHR Images," 2019 10th International Workshop on the Analysis of Multitemporal Remote Sensing Images (MultiTemp), Shanghai, China, 2019, pp. 1-4.  
 [15] H. Chen, C. Wu, B. Du and L. Zhang, "Change Detection in Multi-temporal VHR Images Based on Deep Siamese Multi-scale Convolutional Neural Network," arXiv preprint arXiv:1912.08628, 2020. https://arxiv.org/abs/1906.11479.  
 [16] S. Saha, F. Bovolo, and L. Bruzzone, “Unsupervised deep change vector analysis for multiple-change detection in VHR Images,” IEEE Trans. Geosci. Remote Sens., vol. 57, no. 6, pp. 3677–3693, 2019. 
+[17] L. Ru, B. Du and C. Wu, "Multi-Temporal Scene Classification and Scene Change Detection with Correlation based Fusion," in IEEE Transactions on Image Processing, doi: 10.1109/TIP.2020.3039328.  
 ## Q & A
 **For any questions, please [contact us.](mailto:Qschrx@gmail.com)**
