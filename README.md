@@ -46,7 +46,12 @@ DCVA [16] processes pre-change and post-change images through a pre-trained netw
 
 ### CorrFusionNet
 <div align=center><img src="./Figure/CorrFusionNet.jpg" width="60%" height="60%"></div>
-CorrFusionNet [17] is a unified network called CorrFusionNet for scene change detection. The CorrFusionNet firstly extracts the features of the bi-temporal inputs with deep convolutional networks. Then the extracted features will be projected into a lower dimension space to computed the instance level canonical correlation. The cross-temporal fusion will be performed based on the computed correlation in the CorrFusion module. In the objective function, the authors introduced a new formulation for calculating the temporal correlation.The Tensorflow implementation could be founded in https://github.com/rulixiang/CorrFusionNet. 
+CorrFusionNet [17] is a unified network called CorrFusionNet for scene change detection. The CorrFusionNet firstly extracts the features of the bi-temporal inputs with deep convolutional networks. Then the extracted features will be projected into a lower dimension space to computed the instance level canonical correlation. The cross-temporal fusion will be performed based on the computed correlation in the CorrFusion module. In the objective function, the authors introduced a new formulation for calculating the temporal correlation. The original Tensorflow implementation could be founded in https://github.com/rulixiang/CorrFusionNet. 
+
+### SNUNet
+<div align=center><img src="./Figure/SNUNet.png" width="60%" height="60%"></div>
+SNUNet-CD [18] is a densely connected siamese network for change detection, namely SNUNet-CD (the combination of Siamese network and NestedUNet). SNUNet-CD alleviates the loss of localization information in the deep layers of neural network through compact information transmission between encoder and decoder, and between decoder and decoder. In addition, Ensemble Channel Attention Module (ECAM) is proposed for deep supervision. The original pytorch implementation could be founded in https://github.com/likyoo/Siam-NestedUNet. 
+
 
 ## Reference
 [1] F. Bovolo and L. Bruzzone, “A Theoretical Framework for Unsupervised Change Detection Based on Change Vector Analysis in the Polar Domain,” IEEE Trans. Geosci. Remote Sens., vol. 45, no. 1, pp. 218–236, 2007.  
@@ -66,5 +71,6 @@ CorrFusionNet [17] is a unified network called CorrFusionNet for scene change de
 [15] H. Chen, C. Wu, B. Du and L. Zhang, "Change Detection in Multi-temporal VHR Images Based on Deep Siamese Multi-scale Convolutional Neural Network," arXiv preprint arXiv:1912.08628, 2020. https://arxiv.org/abs/1906.11479.  
 [16] S. Saha, F. Bovolo, and L. Bruzzone, “Unsupervised deep change vector analysis for multiple-change detection in VHR Images,” IEEE Trans. Geosci. Remote Sens., vol. 57, no. 6, pp. 3677–3693, 2019.  
 [17] L. Ru, B. Du and C. Wu, "Multi-Temporal Scene Classification and Scene Change Detection with Correlation based Fusion," in IEEE Transactions on Image Processing, doi: 10.1109/TIP.2020.3039328.  
+[18] S. Fang, K. Li, J. Shao and Z. Li, "SNUNet-CD: A Densely Connected Siamese Network for Change Detection of VHR Images," in IEEE Geoscience and Remote Sensing Letters, doi: 10.1109/LGRS.2021.3056416.  
 ## Q & A
 **For any questions, please [contact us.](mailto:Qschrx@gmail.com)**
