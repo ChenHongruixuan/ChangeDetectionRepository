@@ -1,5 +1,5 @@
 ## Citation
-Please cite our paper if you use these two data sets in your research.
+Please cite our paper if you use these two datasets in your research.
 ```
 @article{Wu2014,
 author = {Wu, Chen and Du, Bo and Zhang, Liangpei},

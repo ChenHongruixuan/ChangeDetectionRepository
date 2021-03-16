@@ -1,7 +1,12 @@
 # SZTAKI AirChange Benchmark set
+<div align=center><img src="ACD.png" width="100%" height="100%"></div>
+
 ## Description
 This Benchmark set contains 13 aerial image pairs of size 952x640 and resolution 1.5m/pixel and binary change masks (drawn by hand), which were used for evaluation in publications [1] and [2].
-Each record constains a pair of preliminary registered input images and a mask of the 'relevant' changes. The input images are taken with 5, 7 resp. 23 years time differences. During the generation of the change mask, we have considered the following differences as relevant changes: (a) new built-up regions (b) building operations (c) planting of large group of trees (d) fresh plough-land (e) groundwork before building over. Note that the ground truth does NOT contain change classification, only binary change-no change decision for each pixel. For more information please contact Csaba Benedek.
+Each record constains a pair of preliminary registered input images and a mask of the 'relevant' changes. The input images are taken with 5, 7 resp. 23 years time differences. During the generation of the change mask, we have considered the following differences as relevant changes: (a) new built-up regions (b) building operations (c) planting of large group of trees (d) fresh plough-land (e) groundwork before building over. Note that the ground truth does NOT contain change classification, only binary change-no change decision for each pixel. For more information please contact Csaba Benedek. 
+
+## Links
+The original websith of this dataset is http://web.eee.sztaki.hu/remotesensing/airchange_benchmark.html
 
 ## Terms of usage
 The benchmark set is free for scientific use.
