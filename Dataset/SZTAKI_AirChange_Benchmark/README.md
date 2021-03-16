@@ -1,5 +1,5 @@
 # SZTAKI AirChange Benchmark set
-<div align=center><img src="ACD.png" width="100%" height="100%"></div>
+<div align=center><img src="ACD.png" width="60%" height="60%"></div>
 
 ## Description
 This Benchmark set contains 13 aerial image pairs of size 952x640 and resolution 1.5m/pixel and binary change masks (drawn by hand), which were used for evaluation in publications [1] and [2].

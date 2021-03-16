@@ -1,5 +1,5 @@
 # Building Change Detection Dataset
-<div align=center><img src="BCD.png" width="100%" height="100%"></div>
+<div align=center><img src="BCD.png" width="60%" height="60%"></div>
 
 ## Description
 Building change detection dataset covers an area hitten by a 6.3-magnitude earthquake in February 2011 and rebuilt in the following years. This dataset consists of one multi-temporal aerial image-pairs with a size of 32507×15354 pixels. The spatial resolution of these images is 0.075m per pixel. 

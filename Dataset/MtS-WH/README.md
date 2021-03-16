@@ -1,5 +1,5 @@
 # Datasets used in PCAKmeans
-<div align=center><img src="MTSWH.png" width="100%" height="100%"></div>
+<div align=center><img src="MTSWH.png" width="60%" height="60%"></div>
 
 ## Description of the dataset
 The Wuhan multi-temperature scene (MtS-WH) data set is mainly used for theoretical research and verification of scene change detection methods. Scene change detection is  detecting and analyzing the changes of land-use in a certain area at the scene semantic level.

@@ -1,5 +1,5 @@
 # Onera Satellite Change Detection dataset
-<div align=center><img src="OSCD.png" width="100%" height="100%"></div>
+<div align=center><img src="OSCD.png" width="60%" height="60%"></div>
 
 ## Description
 The Onera Satellite Change Detection dataset addresses the issue of detecting changes between satellite images from different dates.
