@@ -18,3 +18,6 @@ This directory contain some open-source change detection datasets. If you use th
 ### Hyperspectral Image Datasets
 [River Dataset](https://github.com/I-Hope-Peace/ChangeDetectionRepository/tree/master/Dataset/HyperRiver)  
 [Hyperspectral Change Detection Dataset](https://github.com/I-Hope-Peace/ChangeDetectionRepository/tree/master/Dataset/SAEMCD)
+
+### Synthetic Image Datasets
+[Aerial Imagery Change Detection (AICD) Dataset](https://github.com/I-Hope-Peace/ChangeDetectionRepository/tree/master/Dataset/AICD)
