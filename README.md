@@ -52,6 +52,7 @@ CorrFusionNet [17] is a unified network called CorrFusionNet for scene change de
 <div align=center><img src="./Figure/SNUNet.png" width="60%" height="60%"></div>
 SNUNet-CD [18] is a densely connected siamese network for change detection, namely SNUNet-CD (the combination of Siamese network and NestedUNet). SNUNet-CD alleviates the loss of localization information in the deep layers of neural network through compact information transmission between encoder and decoder, and between decoder and decoder. In addition, Ensemble Channel Attention Module (ECAM) is proposed for deep supervision. The original pytorch implementation could be founded in https://github.com/likyoo/Siam-NestedUNet. 
 
+
 ## Other Change Detection Repository
 There also exist some other change detection repositories, you can visit them through below links:  
 [1] https://github.com/Bobholamovic/ChangeDetectionToolbox  
