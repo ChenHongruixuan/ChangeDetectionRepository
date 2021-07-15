@@ -11,6 +11,7 @@ This directory contain some open-source change detection datasets. If you use th
 
 
 ### Very-high-resolution /Aerial Image Datasets
+[Wuhan Multi-Application VHR Scene classification (WH-MAVS) Dataset](https://github.com/I-Hope-Peace/ChangeDetectionRepository/tree/master/Dataset/WH-MAVS)  
 [Wuhan Multi-temperature Scene (MtS-WH) Dataset](https://github.com/I-Hope-Peace/ChangeDetectionRepository/tree/master/Dataset/MtS-WH)  
 [Season Varying Change Detection Dataset](https://github.com/I-Hope-Peace/ChangeDetectionRepository/tree/master/Dataset/SVCD)  
 [Building Change Detection Dataset](https://github.com/I-Hope-Peace/ChangeDetectionRepository/tree/master/Dataset/BCD)  
